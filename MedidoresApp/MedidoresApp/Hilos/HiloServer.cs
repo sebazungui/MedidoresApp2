@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MedidoresApp.Hilos
@@ -28,6 +29,9 @@ namespace MedidoresApp.Hilos
                     Console.WriteLine("Esperando Medidores...");
                     ClienteSocket clienteSocket = server.ObtenerCliente();
                     HiloCliente hiloCliente = new HiloCliente(clienteSocket);
+                    Thread t = new Thread(new ThreadStart(hiloCliente.Ejecutar));
+                    t.IsBackground = true;
+                    t.Start();
                 }
             }
         }

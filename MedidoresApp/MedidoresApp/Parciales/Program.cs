@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MedidoresModel.DAL;
+using MedidoresModel.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,21 +10,12 @@ namespace MedidoresApp
 {
     public partial class Program
     {
-        static void IngresarLectura()
-        {
-
-        }
-
-        static void MostrarLecturas()
-        {
-
-        }
+        static ILecturaDAL dal = LecturaDALFactory.CreateDal();
 
         static bool Menu()
         {
             bool continuar = true;
-            Console.WriteLine("1. Ingresar");
-            Console.WriteLine("2. Testing");
+            Console.WriteLine("Ingrese opcion del menu:");
             string opcion = Console.ReadLine().Trim();
             switch (opcion)
             {
@@ -42,6 +35,52 @@ namespace MedidoresApp
             return continuar;
         }
 
+        private static void MostrarLecturas()
+        {
+            throw new NotImplementedException();
+        }
 
+        private static void IngresarLectura()
+        {
+            string fecha, valor, unidadMedida;
+            int tipo;
+            do
+            {
+                Console.WriteLine("Ingrese fecha:");
+                fecha = Console.ReadLine().Trim();
+
+            } while (fecha == string.Empty);
+
+            do
+            {
+                Console.WriteLine("Ingrese Valor:");
+                valor = Console.ReadLine().Trim();
+            } while (valor == string.Empty);
+
+            do
+            {
+                Console.WriteLine("Ingrese detalle:");
+                unidadMedida = Console.ReadLine().Trim();
+            } while (unidadMedida == string.Empty);
+
+            do
+            {
+                Console.WriteLine("Ingrese detalle:");
+                tipo = Convert.ToInt32(Console.ReadLine().Trim());
+            } while (tipo.Equals(0));
+
+            Lectura l = new Lectura()
+            {
+                Fecha = fecha,
+                UnidadMedida = unidadMedida,
+                Valor = valor,
+                Tipo = tipo
+            };
+            lock (dal)
+            {
+                dal.RegistrarLecturaConsumo(l);
+            }
+
+        }
     }
 }

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{19B24E80-3089-4FC4-BA4C-F9D18C07758C}</ProjectGuid>
+    <ProjectGuid>{FCD4BA53-988F-439B-9305-9A22D9A5B6B3}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MedidoresApp</RootNamespace>
-    <AssemblyName>MedidoresApp</AssemblyName>
+    <RootNamespace>MedidorSocketApp</RootNamespace>
+    <AssemblyName>MedidorSocketApp</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -44,24 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hilos\HiloCliente.cs" />
-    <Compile Include="Hilos\HiloServer.cs" />
-    <Compile Include="Parciales\Program.cs" />
+    <Compile Include="Comunicacion\ClienteSocket.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MedidoresModel\MedidoresModel.csproj">
-      <Project>{B395A319-DCA4-473E-9E8B-1C549961D11F}</Project>
-      <Name>MedidoresModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SocketUtils\SocketUtils.csproj">
-      <Project>{38CC5AD7-A84F-43D4-B90A-06236C161D37}</Project>
-      <Name>SocketUtils</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
